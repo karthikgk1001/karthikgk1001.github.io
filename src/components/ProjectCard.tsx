@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { LiveProjectButton } from './LiveProjectButton';
 import { ShieldAlert, Terminal, FileCode2, CheckCircle2, Activity, Cpu, AlertTriangle } from 'lucide-react';
 
@@ -16,39 +16,39 @@ interface ProjectCardProps {
   project: ProjectData;
   index: number;
   totalCards: number;
-  progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   index,
   totalCards,
-  progress,
-  range,
-  targetScale,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Smooth scale down as subsequent cards scroll over it
-  const scale = useTransform(progress, range, [1, targetScale]);
-  
-  // Subtle dimming as the card is covered by newer cards in the stack
+  // Track scroll position of each card as it sticks and gets covered
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start 80px', 'end start'],
+  });
+
   const isLast = index === totalCards - 1;
-  const opacity = useTransform(progress, range, [1, isLast ? 1 : 0.85]);
+  // Scaled down targets: Card 0 -> 0.93, Card 1 -> 0.965, Card 2 -> 1.0
+  const targetScale = 1 - (totalCards - 1 - index) * 0.035;
+  const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, isLast ? 1 : 0.78]);
 
   return (
     <div
       ref={cardRef}
-      className="min-h-[78vh] sm:min-h-[82vh] md:min-h-[85vh] sticky flex items-center justify-center"
+      className="sticky flex items-start justify-center will-change-transform mb-8 sm:mb-12 md:mb-16 last:mb-0"
       style={{
-        top: `calc(4.5rem + ${index * 26}px)`,
+        top: `calc(4.2rem + ${index * 26}px)`,
+        zIndex: 10 + index,
       }}
     >
       <motion.div
         style={{ scale, opacity }}
-        className="w-full max-w-6xl mx-auto rounded-[36px] sm:rounded-[48px] md:rounded-[56px] border-2 border-[#D7E2EA] bg-[#0C0C0C]/95 backdrop-blur-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.9)] transition-all will-change-transform"
+        className="w-full max-w-6xl mx-auto rounded-[32px] sm:rounded-[44px] md:rounded-[52px] border-2 border-[#D7E2EA] bg-[#0C0C0C]/95 backdrop-blur-2xl p-4 sm:p-6 md:p-8 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.95)] transition-all"
       >
         {/* Top row */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-5 pb-4 border-b border-[#D7E2EA]/20">
@@ -83,13 +83,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Bottom row: Custom High-Tech Security Visual Panels */}
-        <div className="grid grid-cols-1 md:grid-cols-10 gap-4 sm:gap-5 items-stretch min-h-[360px] md:min-h-[420px]">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-4 sm:gap-5 items-stretch min-h-[350px] md:min-h-[400px]">
           {/* Left column (40% width): 2 stacked panels */}
           <div className="md:col-span-4 flex flex-col gap-4">
             {project.type === 'wsl' && (
               <>
                 {/* WSL Telemetry Panel */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-2 text-[#00ff9d]">
                       <Terminal className="w-3.5 h-3.5" /> sysmon_event_1.log
@@ -108,7 +108,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </div>
 
                 {/* WSL MITRE Mapping Panel */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-1.5 text-white">
                       <ShieldAlert className="w-3.5 h-3.5 text-[#38bdf8]" /> MITRE ATT&CK Matrix
@@ -136,7 +136,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             {project.type === 'siem' && (
               <>
                 {/* SIEM API Ingestion Panel */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-2 text-[#38bdf8]">
                       <Activity className="w-3.5 h-3.5" /> FastAPI Ingestion API
@@ -155,7 +155,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </div>
 
                 {/* SIEM Automated Tests Panel */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-1.5 text-white">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#00ff9d]" /> CI/CD & Test Metrics
@@ -186,7 +186,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             {project.type === 'magic' && (
               <>
                 {/* Magic Numbers Hex Inspection */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-2 text-[#f59e0b]">
                       <Cpu className="w-3.5 h-3.5" /> Header Signature Analyzer
@@ -204,7 +204,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </div>
 
                 {/* Shannon Entropy Panel */}
-                <div className="flex-1 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
                   <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
                     <span className="flex items-center gap-1.5 text-white">
                       <AlertTriangle className="w-3.5 h-3.5 text-[#f59e0b]" /> Shannon Entropy Risk
@@ -229,7 +229,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
 
           {/* Right column (60% width): 1 tall visual code / telemetry panel */}
-          <div className="md:col-span-6 rounded-[28px] sm:rounded-[36px] border border-[#D7E2EA]/30 bg-[#101218] p-5 sm:p-6 flex flex-col justify-between shadow-xl overflow-hidden min-h-[300px]">
+          <div className="md:col-span-6 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#101218] p-5 sm:p-6 flex flex-col justify-between shadow-xl overflow-hidden min-h-[300px]">
             {project.type === 'wsl' && (
               <>
                 <div className="flex items-center justify-between pb-3 border-b border-white/10 font-mono text-xs">
