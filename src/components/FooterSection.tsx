@@ -9,7 +9,7 @@ export const FooterSection: React.FC = () => {
   const [history, setHistory] = useState<Array<{ cmd: string; output: string }>>([
     {
       cmd: 'whoami',
-      output: 'g.karthik // Cybersecurity Analyst & Aspiring Pentester // Shiv Nadar University Chennai',
+      output: 'g.karthik // Cybersecurity Student | Aspiring Penetration Tester // Shiv Nadar University Chennai',
     },
     {
       cmd: 'cat certs.txt',
@@ -26,7 +26,7 @@ export const FooterSection: React.FC = () => {
     if (cleanCmd === 'help') {
       reply = 'Available commands: whoami, projects, certs, nmap, flag, clear, contact';
     } else if (cleanCmd === 'whoami') {
-      reply = 'G. Karthik — 3rd Year B.Tech CSE (Cybersecurity) @ SNUC | Former Maveric Systems Intern | OffSec & Detection Researcher';
+      reply = 'G. Karthik — Cybersecurity Student | Aspiring Penetration Tester @ SNUC (3rd Year) | Former Maveric Systems Intern';
     } else if (cleanCmd === 'projects') {
       reply = '1. DevOps SIEM Monitoring Platform (FastAPI/React)\n2. WSL-Based EDR Evasion Detection (SigmaHQ)\n3. Magic Number Analyzer (Static Malware Tool)\n4. Web Application VAPT (Burp Suite/OWASP)';
     } else if (cleanCmd === 'nmap') {

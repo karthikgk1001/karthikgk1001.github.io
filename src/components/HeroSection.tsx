@@ -75,7 +75,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavClick }) => {
             className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[170px] sm:max-w-[240px] md:max-w-[300px]"
             style={{ fontSize: 'clamp(0.75rem, 1.3vw, 1.4rem)' }}
           >
-            a cybersecurity analyst driven by offensive security, edr evasion & threat detection
+            a cybersecurity student driven by offensive security, edr evasion & threat detection
           </p>
         </FadeIn>
 
