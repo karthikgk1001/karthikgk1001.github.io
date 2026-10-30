@@ -20,18 +20,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavClick }) => {
 
   return (
     <section className="relative h-screen w-full flex flex-col justify-between overflow-x-clip bg-[#0C0C0C] select-none">
-      {/* Navbar */}
+      {/* Navbar with Links & Resume */}
       <FadeIn delay={0} y={-20} duration={0.6}>
         <nav className="w-full flex items-center justify-between px-6 md:px-10 pt-6 md:pt-8 z-30">
-          {["About", "Skills", "Projects", "Contact"].map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollTo(item.toLowerCase())}
-              className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.35rem] transition-opacity duration-200 hover:opacity-70 cursor-pointer"
-            >
-              {item}
-            </button>
-          ))}
+          <div className="flex items-center gap-4 sm:gap-8 md:gap-12">
+            {["About", "Skills", "Projects", "Contact"].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.35rem] transition-opacity duration-200 hover:opacity-70 cursor-pointer"
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#00ff9d] border border-[#00ff9d]/40 bg-[#00ff9d]/10 px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full font-medium uppercase tracking-wider text-xs sm:text-sm md:text-base hover:bg-[#00ff9d]/20 hover:border-[#00ff9d] transition-all cursor-pointer flex items-center gap-1.5 shadow-[0_0_20px_rgba(0,255,157,0.15)]"
+          >
+            <span>Resume</span>
+            <span className="text-[11px] sm:text-xs opacity-80">↗</span>
+          </a>
         </nav>
       </FadeIn>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FadeIn } from './FadeIn';
 import { ContactButton } from './ContactButton';
-import { Terminal, Shield, ExternalLink, Mail, Phone, Linkedin, Github } from 'lucide-react';
+import { Terminal, Shield, ExternalLink, Mail, Phone, Linkedin, Github, FileText } from 'lucide-react';
 
 export const FooterSection: React.FC = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
@@ -24,9 +24,14 @@ export const FooterSection: React.FC = () => {
 
     let reply = '';
     if (cleanCmd === 'help') {
-      reply = 'Available commands: whoami, projects, certs, nmap, flag, clear, contact';
+      reply = 'Available commands: whoami, projects, certs, resume, nmap, flag, clear, contact';
     } else if (cleanCmd === 'whoami') {
       reply = 'G. Karthik — Cybersecurity Student | Aspiring Penetration Tester @ SNUC (3rd Year) | Former Maveric Systems Intern';
+    } else if (cleanCmd === 'resume' || cleanCmd === 'cat resume' || cleanCmd === 'cat resume.pdf' || cleanCmd === 'download resume') {
+      if (typeof window !== 'undefined') {
+        window.open('/resume.pdf', '_blank');
+      }
+      reply = '📄 Opening G. Karthik\'s Resume (PDF) in a new tab... [karthikgportfolio.vercel.app/resume.pdf]';
     } else if (cleanCmd === 'projects') {
       reply = '1. DevOps SIEM Monitoring Platform (FastAPI/React)\n2. WSL-Based EDR Evasion Detection (SigmaHQ)\n3. Magic Number Analyzer (Static Malware Tool)\n4. Web Application VAPT (Burp Suite/OWASP)';
     } else if (cleanCmd === 'nmap') {
@@ -119,15 +124,26 @@ export const FooterSection: React.FC = () => {
             </p>
           </div>
 
-          <ContactButton
-            label="Get In Touch"
-            href="mailto:karthikganesh10@outlook.com"
-          />
+          <div className="flex flex-wrap items-center gap-4">
+            <ContactButton
+              label="Get In Touch"
+              href="mailto:karthikganesh10@outlook.com"
+            />
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-medium uppercase tracking-widest px-7 py-3 sm:px-8 sm:py-3.5 text-xs sm:text-sm transition-all duration-300 hover:bg-[#D7E2EA]/10 hover:border-white hover:text-white cursor-pointer select-none"
+            >
+              <FileText className="w-4 h-4 text-[#00ff9d]" />
+              <span>View Resume ↗</span>
+            </a>
+          </div>
         </div>
 
         {/* Links row */}
         <div className="flex flex-wrap items-center justify-between gap-6 pt-10 border-t border-[#D7E2EA]/10 text-xs sm:text-sm font-mono text-[#D7E2EA]/70">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
             <a
               href="https://github.com/karthikgk1001"
               target="_blank"
@@ -145,6 +161,15 @@ export const FooterSection: React.FC = () => {
             >
               <Linkedin className="w-4 h-4 text-[#38bdf8]" />
               linkedin.com/in/g-karthik
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 text-[#00ff9d] hover:underline transition-colors"
+            >
+              <FileText className="w-4 h-4" />
+              resume.pdf ↗
             </a>
           </div>
 
