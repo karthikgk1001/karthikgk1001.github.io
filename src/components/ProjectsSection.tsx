@@ -6,11 +6,11 @@ import { StarryGalaxyBackground } from './StarryGalaxyBackground';
 const projects: ProjectData[] = [
   {
     number: "01",
-    category: "Security Platform // FastAPI & React",
-    name: "SIEM Dashboard for DevOps",
-    githubUrl: "https://github.com/karthikgk1001",
-    metrics: "62 Tests // 91% Backend Coverage",
-    type: "siem",
+    category: "GPU Acceleration // Deep Learning & CUDA C++",
+    name: "EMBER 2.0: CUDA Malware Detection",
+    githubUrl: "https://github.com/karthikgk1001/ember-cuda-malware",
+    metrics: "5.1× Speedup // 97.12% ROC-AUC",
+    type: "ember",
   },
   {
     number: "02",
@@ -22,6 +22,14 @@ const projects: ProjectData[] = [
   },
   {
     number: "03",
+    category: "Security Platform // FastAPI & React",
+    name: "SIEM Dashboard for DevOps",
+    githubUrl: "https://github.com/karthikgk1001",
+    metrics: "62 Tests // 91% Backend Coverage",
+    type: "siem",
+  },
+  {
+    number: "04",
     category: "Malware Triage // Python & Signatures",
     name: "Magic Number Analyzer",
     githubUrl: "https://github.com/karthikgk1001",

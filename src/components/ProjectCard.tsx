@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { LiveProjectButton } from './LiveProjectButton';
-import { ShieldAlert, Terminal, FileCode2, CheckCircle2, Activity, Cpu, AlertTriangle } from 'lucide-react';
+import { ShieldAlert, Terminal, FileCode2, CheckCircle2, Activity, Cpu, AlertTriangle, Zap } from 'lucide-react';
 
 export interface ProjectData {
   number: string;
@@ -9,7 +9,7 @@ export interface ProjectData {
   name: string;
   githubUrl: string;
   metrics?: string;
-  type: 'wsl' | 'siem' | 'magic';
+  type: 'ember' | 'wsl' | 'siem' | 'magic';
 }
 
 interface ProjectCardProps {
@@ -86,6 +86,56 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-10 gap-4 sm:gap-5 items-stretch min-h-[350px] md:min-h-[400px]">
           {/* Left column (40% width): 2 stacked panels */}
           <div className="md:col-span-4 flex flex-col gap-4">
+            {project.type === 'ember' && (
+              <>
+                {/* CUDA Kernel Telemetry Panel */}
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
+                    <span className="flex items-center gap-2 text-[#00ff9d]">
+                      <Zap className="w-3.5 h-3.5 text-[#00ff9d]" /> fused_gemm_relu.cu
+                    </span>
+                    <span className="text-xs text-white/50">CUDA C++ KERNEL</span>
+                  </div>
+                  <div className="font-mono text-[11px] sm:text-xs text-[#BBCCD7] space-y-1 py-2 leading-relaxed">
+                    <p><span className="text-[#38bdf8]">__global__</span> void fused_gemm_bias_relu(</p>
+                    <p className="pl-3 text-white/50">const float* __restrict__ A, // 2381-dim PE</p>
+                    <p className="pl-3 text-white/50">const float* __restrict__ W, // MLP Layer</p>
+                    <p><span className="text-[#f59e0b]">__shared__</span> float sA[32][32];</p>
+                  </div>
+                  <div className="text-[10px] font-mono text-[#00ff9d] bg-[#00ff9d]/10 px-2.5 py-1 rounded-md border border-[#00ff9d]/20 w-fit">
+                    NVRTC JIT Runtime + PyTorch Interop
+                  </div>
+                </div>
+
+                {/* Model Benchmark & Speedup Panel */}
+                <div className="flex-1 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-4 sm:p-5 flex flex-col justify-between shadow-lg">
+                  <div className="flex items-center justify-between pb-2 border-b border-white/10 text-xs font-mono">
+                    <span className="flex items-center gap-1.5 text-white">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#38bdf8]" /> Model Evaluation
+                    </span>
+                    <span className="text-[#00ff9d] text-xs font-bold">5.1× SPEEDUP</span>
+                  </div>
+                  <div className="space-y-1.5 py-2 font-mono text-xs">
+                    <div className="flex justify-between text-white/80">
+                      <span>ROC-AUC Score:</span>
+                      <span className="text-[#00ff9d]">97.12%</span>
+                    </div>
+                    <div className="flex justify-between text-white/80">
+                      <span>Accuracy / F1:</span>
+                      <span className="text-[#38bdf8]">92.90% / 92.87%</span>
+                    </div>
+                    <div className="flex justify-between text-white/80">
+                      <span>Held-Out Test Subset:</span>
+                      <span className="text-[#f59e0b]">5,000 Samples</span>
+                    </div>
+                  </div>
+                  <div className="text-[11px] font-mono text-white/50">
+                    Benchmarked vs CPU GEMM, cuBLAS & LightGBM.
+                  </div>
+                </div>
+              </>
+            )}
+
             {project.type === 'wsl' && (
               <>
                 {/* WSL Telemetry Panel */}
@@ -230,6 +280,37 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Right column (60% width): 1 tall visual code / telemetry panel */}
           <div className="md:col-span-6 rounded-[24px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#101218] p-5 sm:p-6 flex flex-col justify-between shadow-xl overflow-hidden min-h-[300px]">
+            {project.type === 'ember' && (
+              <>
+                <div className="flex items-center justify-between pb-3 border-b border-white/10 font-mono text-xs">
+                  <span className="flex items-center gap-2 text-white">
+                    <Cpu className="w-4 h-4 text-[#00ff9d]" /> ember_pipeline.py // High-Throughput PE Inference
+                  </span>
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#00ff9d]/10 text-[#00ff9d] border border-[#00ff9d]/30 font-semibold">
+                    CUDA ACCELERATED
+                  </span>
+                </div>
+                <div className="font-mono text-xs text-[#BBCCD7] space-y-1.5 py-3 overflow-x-auto leading-relaxed">
+                  <p><span className="text-white/40">[1] PE Feature Extraction:</span> 2,381-dim vector parsed via LIEF (1.4ms)</p>
+                  <p><span className="text-white/40">[2] Memory Pipeline:</span> Host-to-Device transfer via CUDA Driver API</p>
+                  <p><span className="text-white/40">[3] Kernel Execution:</span> Tiled shared-memory GEMM (32×32 thread blocks)</p>
+                  <p><span className="text-white/40">[4] Inference Probability:</span> <span className="text-[#f43f5e] font-bold">0.9842 (Malicious Threshold: 0.83)</span></p>
+                  <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 my-1">
+                    <div className="flex justify-between items-center text-[11px]">
+                      <span className="text-[#f43f5e] font-bold">[VERDICT] MALWARE DETECTED</span>
+                      <span className="text-[#00ff9d]">Confidence: 98.42%</span>
+                    </div>
+                    <p className="text-white/50 text-[10px] pt-1">Features: High Section Entropy (7.89), Suspicious Kernel32 Imports</p>
+                  </div>
+                  <p className="text-white/40">[5] Benchmark Metric: <span className="text-[#00ff9d] font-bold">5.1× end-to-end speedup</span> over CPU baseline</p>
+                </div>
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs font-mono text-white/50">
+                  <span>Dataset: EMBER 2018 v2 (LIEF + NVRTC)</span>
+                  <span className="text-[#00ff9d]">GitHub: ember-cuda-malware</span>
+                </div>
+              </>
+            )}
+
             {project.type === 'wsl' && (
               <>
                 <div className="flex items-center justify-between pb-3 border-b border-white/10 font-mono text-xs">

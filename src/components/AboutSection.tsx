@@ -4,7 +4,7 @@ import { AnimatedText } from './AnimatedText';
 import { ContactButton } from './ContactButton';
 
 export const AboutSection: React.FC = () => {
-  const bioText = "Third-year Cybersecurity student at Shiv Nadar University Chennai with hands-on experience in offensive security, endpoint incident response, and threat detection engineering. Completed an information security internship at Maveric Systems and contributed to the SigmaHQ open-source community. Ranked Top 20% globally on TryHackMe, actively developing high-fidelity detection rules and preparing for the eJPT. Let's secure something incredible together!";
+  const bioText = "Third-year Cybersecurity student at Shiv Nadar University Chennai with hands-on experience in offensive security, endpoint incident response, and threat detection engineering. Completed an information security internship at Maveric Systems and contributed to the SigmaHQ open-source community. Ranked Top 10% globally on TryHackMe, actively developing high-fidelity detection rules and preparing for the eJPT. Let's secure something incredible together!";
 
   return (
     <section

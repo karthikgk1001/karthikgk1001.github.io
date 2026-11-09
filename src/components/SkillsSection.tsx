@@ -30,15 +30,15 @@ const skills: SkillItem[] = [
   },
   {
     number: "04",
-    name: "Malware Analysis & Forensics",
-    description: "Static file inspection and binary triage. Calculating file header signatures (magic numbers) against file extensions, computing Shannon entropy for packed/encrypted malware detection, and conducting network packet analysis.",
-    tools: ["Wireshark", "Static Malware Analysis", "Entropy Scoring", "PE Headers", "TCP/IP Telemetry"]
+    name: "Malware Analysis & GPU Acceleration",
+    description: "Static file inspection, PE binary triage, and custom CUDA acceleration. Extracting 2,381-dimensional EMBER features, calculating Shannon entropy, parsing PE structures with LIEF, and benchmarking GPU kernel speedups against cuBLAS.",
+    tools: ["CUDA C++", "PyTorch", "LIEF", "EMBER 2.0", "Wireshark", "Entropy Analysis"]
   },
   {
     number: "05",
     name: "Scripting & DevSecOps",
-    description: "Developing robust automation tooling and self-hosted monitoring platforms. Architecting modular FastAPI backends, OpenSearch schemas, PostgreSQL databases, Docker Compose stacks, and comprehensive automated test suites (91% test coverage).",
-    tools: ["Python", "Bash", "FastAPI", "OpenSearch", "PostgreSQL", "Docker Compose"]
+    description: "Developing robust automation tooling, high-throughput pipelines, and self-hosted monitoring platforms. Architecting modular FastAPI backends, OpenSearch schemas, NVRTC runtime integrations, and comprehensive automated test suites (91% test coverage).",
+    tools: ["Python", "CUDA C++", "NVRTC", "FastAPI", "OpenSearch", "Docker Compose"]
   }
 ];
 

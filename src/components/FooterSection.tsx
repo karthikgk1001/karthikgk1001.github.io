@@ -13,7 +13,7 @@ export const FooterSection: React.FC = () => {
     },
     {
       cmd: 'cat certs.txt',
-      output: '• TryHackMe: Ranked Top 20% Globally (7M+ users)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path\n• eJPT: Currently Preparing',
+      output: '• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path\n• eJPT: Currently Preparing',
     },
   ]);
 
@@ -33,13 +33,13 @@ export const FooterSection: React.FC = () => {
       }
       reply = '📄 Opening G. Karthik\'s Resume (PDF) in a new tab... [karthikgportfolio.vercel.app/resume.pdf]';
     } else if (cleanCmd === 'projects') {
-      reply = '1. DevOps SIEM Monitoring Platform (FastAPI/React)\n2. WSL-Based EDR Evasion Detection (SigmaHQ)\n3. Magic Number Analyzer (Static Malware Tool)\n4. Web Application VAPT (Burp Suite/OWASP)';
+      reply = '1. EMBER 2.0 – CUDA-Accelerated Malware Detection System (PyTorch/CUDA C++)\n2. DevOps SIEM Monitoring Platform (FastAPI/React)\n3. WSL-Based EDR Evasion Detection (SigmaHQ)\n4. Magic Number Analyzer (Static Malware Tool)';
     } else if (cleanCmd === 'nmap') {
       reply = 'Starting Nmap 7.94 scan on karthik.local...\nHost is up (0.0012s latency).\nPORT 22/tcp   OPEN  ssh\nPORT 80/tcp   OPEN  http (Portfolio HUD)\nPORT 443/tcp  OPEN  https\nPORT 8000/tcp OPEN  fastapi-siem\nPORT 9200/tcp OPEN  opensearch\nService Info: OS: Kali Linux 6.1';
     } else if (cleanCmd === 'flag' || cleanCmd === 'cat flag.txt') {
       reply = '🚩 flag{k4rth1k_3jpt_s1gm4hq_pwn3d_2026} — Great job finding the hidden flag!';
     } else if (cleanCmd === 'certs') {
-      reply = '• TryHackMe Top 20% (43+ labs)\n• EC-Council Blockchain Security (90%)\n• Advent of Cyber 2025\n• eJPT (In Progress)';
+      reply = '• TryHackMe Top 10% (56+ labs)\n• EC-Council Blockchain Security (90%)\n• Advent of Cyber 2025\n• eJPT (In Progress)';
     } else if (cleanCmd === 'contact') {
       reply = 'Email: karthikganesh10@outlook.com | GitHub: @karthikgk1001 | Phone: +91 99622 45056';
     } else if (cleanCmd === 'clear') {
