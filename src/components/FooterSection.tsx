@@ -57,9 +57,9 @@ export const FooterSection: React.FC = () => {
   return (
     <footer
       id="contact"
-      className="relative bg-[#0C0C0C] text-[#D7E2EA] px-6 sm:px-10 py-20 border-t border-[#D7E2EA]/10 select-none"
+      className="relative bg-[#0C0C0C] text-[#D7E2EA] px-4 sm:px-10 py-14 sm:py-20 border-t border-[#D7E2EA]/10 select-none"
     >
-      <div className="max-w-6xl mx-auto flex flex-col gap-16">
+      <div className="max-w-6xl mx-auto flex flex-col gap-12 sm:gap-16">
         {/* Interactive Terminal Drawer Toggle */}
         <div className="w-full rounded-2xl border border-[#D7E2EA]/20 bg-[#121212] p-5 shadow-2xl">
           <div className="flex items-center justify-between pb-3 border-b border-[#D7E2EA]/10">

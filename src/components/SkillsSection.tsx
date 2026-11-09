@@ -46,7 +46,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative z-0 text-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 select-none overflow-hidden"
+      className="relative z-0 text-[#0C0C0C] rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-4 sm:px-8 md:px-10 py-16 sm:py-24 md:py-32 select-none overflow-hidden"
     >
       {/* Ethereal Pastel Clouds & Sky Background */}
       <EtherealCloudsBackground />
@@ -56,8 +56,8 @@ export const SkillsSection: React.FC = () => {
         {/* Heading */}
         <FadeIn delay={0} y={30} duration={0.8}>
           <h2
-            className="font-black uppercase text-center text-[#0C0C0C] leading-none tracking-tight mb-16 sm:mb-20 md:mb-28 drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]"
-            style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+            className="font-black uppercase text-center text-[#0C0C0C] leading-none tracking-tight mb-12 sm:mb-20 md:mb-28 drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]"
+            style={{ fontSize: 'clamp(2.5rem, 10vw, 160px)' }}
           >
             Skills
           </h2>
@@ -71,36 +71,36 @@ export const SkillsSection: React.FC = () => {
               delay={index * 0.1}
               y={40}
               duration={0.7}
-              className="border-b border-[#0C0C0C]/15 py-8 sm:py-10 md:py-12 first:border-t"
+              className="border-b border-[#0C0C0C]/15 py-6 sm:py-10 md:py-12 first:border-t"
             >
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 md:gap-12">
+              <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-4 sm:gap-6 md:gap-12">
                 {/* Number on the left */}
                 <span
                   className="font-black text-[#0C0C0C] leading-none select-none tracking-tighter drop-shadow-[0_2px_8px_rgba(255,255,255,0.6)]"
-                  style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
+                  style={{ fontSize: 'clamp(2.5rem, 8vw, 140px)' }}
                 >
                   {skill.number}
                 </span>
 
                 {/* Name + Description + Tool Tags on the right */}
-                <div className="flex flex-col gap-3 flex-1 md:pt-4">
+                <div className="flex flex-col gap-2.5 sm:gap-3 flex-1 md:pt-4">
                   <h3
                     className="font-medium uppercase text-[#0C0C0C] tracking-wide"
-                    style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
+                    style={{ fontSize: 'clamp(1rem, 2vw, 2.1rem)' }}
                   >
                     {skill.name}
                   </h3>
                   <p
                     className="font-light text-[#0C0C0C] leading-relaxed max-w-2xl opacity-75 font-sans"
-                    style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)' }}
+                    style={{ fontSize: 'clamp(0.8rem, 1.4vw, 1.25rem)' }}
                   >
                     {skill.description}
                   </p>
-                  <div className="flex flex-wrap gap-2 pt-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1.5 sm:pt-2">
                     {skill.tools.map((tool) => (
                       <span
                         key={tool}
-                        className="text-xs font-mono font-medium px-3.5 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#0C0C0C]/10 text-[#0C0C0C]/85 shadow-sm hover:bg-white hover:border-[#0C0C0C]/25 transition-all"
+                        className="text-[10px] sm:text-xs font-mono font-medium px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#0C0C0C]/10 text-[#0C0C0C]/85 shadow-sm hover:bg-white hover:border-[#0C0C0C]/25 transition-all"
                       >
                         {tool}
                       </span>
