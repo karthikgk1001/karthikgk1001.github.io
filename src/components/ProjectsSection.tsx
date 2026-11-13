@@ -6,6 +6,15 @@ import { StarryGalaxyBackground } from './StarryGalaxyBackground';
 const projects: ProjectData[] = [
   {
     number: "01",
+    category: "Offensive Security | Penetration Testing",
+    name: "eJPT Practical Penetration Testing Assessment",
+    githubUrl: "https://github.com/karthikgk1001/cyber-writeups-2026/blob/ejpt-ptes-report/eJPT_Penetration_Testing_Report_PTES.md",
+    metrics: "Score: 91% // PTES Standard",
+    buttonLabel: "View Technical Report",
+    type: "ejpt",
+  },
+  {
+    number: "02",
     category: "GPU Acceleration // Deep Learning & CUDA C++",
     name: "EMBER 2.0: CUDA Malware Detection",
     githubUrl: "https://github.com/karthikgk1001/ember-cuda-malware",
@@ -13,7 +22,7 @@ const projects: ProjectData[] = [
     type: "ember",
   },
   {
-    number: "02",
+    number: "03",
     category: "Detection Research // SigmaHQ",
     name: "WSL-Based EDR Evasion Detection",
     githubUrl: "https://github.com/karthikgk1001",
@@ -21,7 +30,7 @@ const projects: ProjectData[] = [
     type: "wsl",
   },
   {
-    number: "03",
+    number: "04",
     category: "Security Platform // FastAPI & React",
     name: "SIEM Dashboard for DevOps",
     githubUrl: "https://github.com/karthikgk1001",
@@ -29,7 +38,7 @@ const projects: ProjectData[] = [
     type: "siem",
   },
   {
-    number: "04",
+    number: "05",
     category: "Malware Triage // Python & Signatures",
     name: "Magic Number Analyzer",
     githubUrl: "https://github.com/karthikgk1001",

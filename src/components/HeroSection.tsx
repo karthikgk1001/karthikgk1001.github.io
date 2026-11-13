@@ -23,12 +23,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavClick }) => {
       {/* Navbar with Links & Resume - Mobile Optimized */}
       <FadeIn delay={0} y={-20} duration={0.6}>
         <nav className="w-full flex items-center justify-between px-3.5 sm:px-8 md:px-10 pt-4 sm:pt-6 md:pt-8 z-30">
-          <div className="flex items-center gap-2.5 sm:gap-6 md:gap-10">
-            {["About", "Skills", "Projects", "Contact"].map((item) => (
+          <div className="flex items-center gap-2 sm:gap-5 md:gap-8 lg:gap-10">
+            {["About", "Skills", "Projects", "Certifications", "Contact"].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollTo(item.toLowerCase())}
-                className="text-[#D7E2EA] font-medium uppercase tracking-wider text-[11px] sm:text-sm md:text-base lg:text-[1.25rem] transition-opacity duration-200 hover:opacity-70 cursor-pointer"
+                className="text-[#D7E2EA] font-medium uppercase tracking-wider text-[10px] sm:text-sm md:text-base lg:text-[1.2rem] transition-opacity duration-200 hover:opacity-70 cursor-pointer whitespace-nowrap"
               >
                 {item}
               </button>

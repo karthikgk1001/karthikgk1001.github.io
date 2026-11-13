@@ -9,11 +9,11 @@ export const FooterSection: React.FC = () => {
   const [history, setHistory] = useState<Array<{ cmd: string; output: string }>>([
     {
       cmd: 'whoami',
-      output: 'g.karthik // Cybersecurity Student | Aspiring Penetration Tester // Shiv Nadar University Chennai',
+      output: 'g.karthik // Cybersecurity Student | eJPT Certified Junior Penetration Tester // Shiv Nadar University Chennai',
     },
     {
       cmd: 'cat certs.txt',
-      output: '• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path\n• eJPT: Currently Preparing',
+      output: '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path',
     },
   ]);
 
@@ -26,20 +26,20 @@ export const FooterSection: React.FC = () => {
     if (cleanCmd === 'help') {
       reply = 'Available commands: whoami, projects, certs, resume, nmap, flag, clear, contact';
     } else if (cleanCmd === 'whoami') {
-      reply = 'G. Karthik — Cybersecurity Student | Aspiring Penetration Tester @ SNUC (3rd Year) | Former Maveric Systems Intern';
+      reply = 'G. Karthik — Cybersecurity Student | eJPT Certified Junior Penetration Tester @ SNUC (3rd Year) | Former Maveric Systems Intern';
     } else if (cleanCmd === 'resume' || cleanCmd === 'cat resume' || cleanCmd === 'cat resume.pdf' || cleanCmd === 'download resume') {
       if (typeof window !== 'undefined') {
         window.open('/resume.pdf', '_blank');
       }
       reply = '📄 Opening G. Karthik\'s Resume (PDF) in a new tab... [karthikgportfolio.vercel.app/resume.pdf]';
     } else if (cleanCmd === 'projects') {
-      reply = '1. EMBER 2.0 – CUDA-Accelerated Malware Detection System (PyTorch/CUDA C++)\n2. DevOps SIEM Monitoring Platform (FastAPI/React)\n3. WSL-Based EDR Evasion Detection (SigmaHQ)\n4. Magic Number Analyzer (Static Malware Tool)';
+      reply = '1. eJPT Practical Penetration Testing Assessment (PTES Report)\n2. EMBER 2.0 – CUDA Malware Detection (PyTorch/CUDA C++)\n3. WSL-Based EDR Evasion Detection (SigmaHQ)\n4. DevOps SIEM Monitoring Platform (FastAPI/React)\n5. Magic Number Analyzer (Static Malware Tool)';
     } else if (cleanCmd === 'nmap') {
       reply = 'Starting Nmap 7.94 scan on karthik.local...\nHost is up (0.0012s latency).\nPORT 22/tcp   OPEN  ssh\nPORT 80/tcp   OPEN  http (Portfolio HUD)\nPORT 443/tcp  OPEN  https\nPORT 8000/tcp OPEN  fastapi-siem\nPORT 9200/tcp OPEN  opensearch\nService Info: OS: Kali Linux 6.1';
     } else if (cleanCmd === 'flag' || cleanCmd === 'cat flag.txt') {
-      reply = '🚩 flag{k4rth1k_3jpt_s1gm4hq_pwn3d_2026} — Great job finding the hidden flag!';
+      reply = '🚩 flag{k4rth1k_3jpt_c3rt1f13d_91p3rc3nt_2026} — Great job finding the hidden flag!';
     } else if (cleanCmd === 'certs') {
-      reply = '• TryHackMe Top 10% (56+ labs)\n• EC-Council Blockchain Security (90%)\n• Advent of Cyber 2025\n• eJPT (In Progress)';
+      reply = '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path';
     } else if (cleanCmd === 'contact') {
       reply = 'Email: karthikganesh10@outlook.com | GitHub: @karthikgk1001 | Phone: +91 99622 45056';
     } else if (cleanCmd === 'clear') {

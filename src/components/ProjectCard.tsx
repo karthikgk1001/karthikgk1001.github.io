@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { LiveProjectButton } from './LiveProjectButton';
-import { ShieldAlert, Terminal, FileCode2, CheckCircle2, Activity, Cpu, AlertTriangle, Zap } from 'lucide-react';
+import { ShieldAlert, Terminal, FileCode2, CheckCircle2, Activity, Cpu, AlertTriangle, Zap, Award } from 'lucide-react';
 
 export interface ProjectData {
   number: string;
@@ -9,7 +9,8 @@ export interface ProjectData {
   name: string;
   githubUrl: string;
   metrics?: string;
-  type: 'ember' | 'wsl' | 'siem' | 'magic';
+  buttonLabel?: string;
+  type: 'ejpt' | 'ember' | 'wsl' | 'siem' | 'magic';
 }
 
 interface ProjectCardProps {
@@ -76,7 +77,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </span>
             )}
             <LiveProjectButton
-              label="Live Project"
+              label={project.buttonLabel || "Live Project"}
               href={project.githubUrl}
               className="!px-4 !py-1.5 sm:!px-8 sm:!py-3 !text-xs sm:!text-sm"
             />
@@ -87,6 +88,55 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-10 gap-3 sm:gap-5 items-stretch min-h-[300px] md:min-h-[400px]">
           {/* Left column (40% width on desktop, 100% on mobile): 2 stacked panels */}
           <div className="md:col-span-4 flex flex-col gap-3 sm:gap-4">
+            {project.type === 'ejpt' && (
+              <>
+                {/* PTES Methodology & Target Environment */}
+                <div className="flex-1 rounded-[18px] sm:rounded-[32px] border border-[#00ff9d]/30 bg-[#12141a] p-3 sm:p-5 flex flex-col justify-between shadow-lg overflow-hidden">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-white/10 text-[11px] sm:text-xs font-mono">
+                    <span className="flex items-center gap-1.5 text-[#00ff9d]">
+                      <Terminal className="w-3.5 h-3.5" /> ptes_assessment.log
+                    </span>
+                    <span className="text-[10px] text-[#00ff9d] font-bold">PTES STANDARD</span>
+                  </div>
+                  <div className="font-mono text-[10px] sm:text-xs text-[#BBCCD7] space-y-0.5 sm:space-y-1 py-1.5 leading-relaxed">
+                    <p><span className="text-[#38bdf8]">Scope:</span> Multi-Host Windows & Linux Lab</p>
+                    <p><span className="text-white/40">Phases:</span> Recon → Vuln Analysis → Exploit → Pivoting</p>
+                    <p><span className="text-[#f43f5e] font-bold">RCE:</span> WordPress Exploit → SYSTEM Shell</p>
+                  </div>
+                  <div className="text-[9px] sm:text-[10px] font-mono text-[#00ff9d] bg-[#00ff9d]/10 px-2 py-0.5 rounded-md border border-[#00ff9d]/20 w-fit">
+                    ASSESSMENT STATUS: COMPLETED (91%)
+                  </div>
+                </div>
+
+                {/* Domain & Practical Competency Breakdown */}
+                <div className="flex-1 rounded-[18px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#12141a] p-3 sm:p-5 flex flex-col justify-between shadow-lg">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-white/10 text-[11px] sm:text-xs font-mono">
+                    <span className="flex items-center gap-1.5 text-white">
+                      <Award className="w-3.5 h-3.5 text-[#00ff9d]" /> Examination Domains
+                    </span>
+                    <span className="text-[#00ff9d] text-[10px] sm:text-xs font-bold">2× 100% PERFECT</span>
+                  </div>
+                  <div className="space-y-1 py-1.5 font-mono text-[10px] sm:text-xs">
+                    <div className="flex justify-between text-white/80">
+                      <span>Host & Network Pentesting:</span>
+                      <span className="text-[#00ff9d] font-bold">100%</span>
+                    </div>
+                    <div className="flex justify-between text-white/80">
+                      <span>Web Application Pentesting:</span>
+                      <span className="text-[#00ff9d] font-bold">100%</span>
+                    </div>
+                    <div className="flex justify-between text-white/80">
+                      <span>Assessment Methodologies:</span>
+                      <span className="text-[#38bdf8]">94%</span>
+                    </div>
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50">
+                    Validated through hands-on technical exploitation.
+                  </div>
+                </div>
+              </>
+            )}
+
             {project.type === 'ember' && (
               <>
                 {/* CUDA Kernel Telemetry Panel */}
@@ -263,6 +313,47 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
           {/* Right column (60% width on desktop, 100% on mobile): 1 visual code / telemetry panel */}
           <div className="md:col-span-6 rounded-[18px] sm:rounded-[32px] border border-[#D7E2EA]/30 bg-[#101218] p-3.5 sm:p-6 flex flex-col justify-between shadow-xl overflow-hidden min-h-[220px] sm:min-h-[280px]">
+            {project.type === 'ejpt' && (
+              <>
+                <div className="flex items-center justify-between pb-2 sm:pb-3 border-b border-white/10 font-mono text-[11px] sm:text-xs">
+                  <span className="flex items-center gap-1.5 text-white">
+                    <FileCode2 className="w-3.5 h-3.5 text-[#00ff9d]" /> eJPT_Penetration_Testing_Report_PTES.md
+                  </span>
+                  <span className="text-[9px] sm:text-xs px-2 py-0.5 rounded-full bg-[#00ff9d]/10 text-[#00ff9d] border border-[#00ff9d]/30 font-semibold">
+                    OFFSEC REPORT
+                  </span>
+                </div>
+                <div className="font-mono text-[10px] sm:text-xs text-[#BBCCD7] space-y-1 sm:space-y-1.5 py-2 sm:py-3 overflow-x-auto leading-relaxed">
+                  <p><span className="text-white/40">[1] Service Enumeration:</span> Discovered FTP (21), HTTP (80), SMB (445), MySQL (3306)</p>
+                  <p><span className="text-white/40">[2] Web Exploitation:</span> WordPress plugin arbitrary file upload → Meterpreter staging</p>
+                  <p><span className="text-white/40">[3] PrivEsc:</span> <span className="text-[#00ff9d] font-bold">meterpreter &gt; getuid → NT AUTHORITY\SYSTEM</span></p>
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-white/5 border border-white/10 my-0.5 sm:my-1">
+                    <div className="flex flex-col gap-1 text-[10px] sm:text-[11px]">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[#00ff9d] font-bold">[POST-EXPLOITATION] PIVOTING & LATERAL MOVEMENT</span>
+                        <span className="text-[#38bdf8]">Subnet: 172.16.x.x</span>
+                      </div>
+                      <p className="text-white/60 text-[9px] sm:text-[10px]">
+                        Routing table updated via Metasploit autoroute + SMB credential validation across internal hosts.
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-white/40">[4] Findings & Remediation: <span className="text-white font-semibold">CVSS scores, proof-of-concept logs, hardening roadmap</span></p>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[9px] sm:text-xs font-mono text-white/50">
+                  <span>PTES Documentation Standard</span>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#00ff9d] hover:underline font-semibold flex items-center gap-1"
+                  >
+                    <span>View Technical Report ↗</span>
+                  </a>
+                </div>
+              </>
+            )}
+
             {project.type === 'ember' && (
               <>
                 <div className="flex items-center justify-between pb-2 sm:pb-3 border-b border-white/10 font-mono text-[11px] sm:text-xs">
