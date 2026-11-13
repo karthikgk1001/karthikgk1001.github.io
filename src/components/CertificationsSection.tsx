@@ -82,7 +82,7 @@ const certificationsList: Certification[] = [
       'Cross-Site Scripting (XSS)',
       'Network Pivoting',
     ],
-    metrics: 'Top 10% Global Rank // 56+ Rooted Labs',
+    metrics: 'Top 9% Global Rank // 65+ Rooted Labs',
   },
   {
     id: 'eccouncil-blockchain',

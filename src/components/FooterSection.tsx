@@ -13,7 +13,7 @@ export const FooterSection: React.FC = () => {
     },
     {
       cmd: 'cat certs.txt',
-      output: '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path',
+      output: '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 9% Globally (65+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path',
     },
   ]);
 
@@ -39,7 +39,7 @@ export const FooterSection: React.FC = () => {
     } else if (cleanCmd === 'flag' || cleanCmd === 'cat flag.txt') {
       reply = '🚩 flag{k4rth1k_3jpt_c3rt1f13d_91p3rc3nt_2026} — Great job finding the hidden flag!';
     } else if (cleanCmd === 'certs') {
-      reply = '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 10% Globally (56+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path';
+      reply = '• INE Certified Junior Penetration Tester (eJPT) — Score: 91% (100% Host/Net & Web Pentest, ID: 200308598)\n• TryHackMe: Ranked Top 9% Globally (65+ labs)\n• EC-Council: Cybersecurity for Blockchain (Score: 90%)\n• TryHackMe: Junior Penetration Tester Path';
     } else if (cleanCmd === 'contact') {
       reply = 'Email: karthikganesh10@outlook.com | GitHub: @karthikgk1001 | Phone: +91 99622 45056';
     } else if (cleanCmd === 'clear') {
