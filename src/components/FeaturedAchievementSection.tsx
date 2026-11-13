@@ -125,25 +125,24 @@ export const FeaturedAchievementSection: React.FC = () => {
                     key={domain.name}
                     className={`rounded-2xl p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ${
                       domain.highlighted
-                        ? 'bg-[#0f1f18] border-2 border-[#00ff9d] shadow-[0_0_25px_rgba(0,255,157,0.25)] relative overflow-hidden'
+                        ? 'bg-[#0f1f18] border-2 border-[#00ff9d] shadow-[0_0_25px_rgba(0,255,157,0.25)]'
                         : 'bg-white/5 border border-white/10 hover:border-white/20'
                     }`}
                   >
-                    {domain.highlighted && (
-                      <div className="absolute top-2 right-2">
-                        <span className="text-[9px] font-mono uppercase font-bold text-[#00ff9d] bg-[#00ff9d]/20 px-2 py-0.5 rounded-full border border-[#00ff9d]/40">
-                          PERFECT SCORE
-                        </span>
-                      </div>
-                    )}
-
                     <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] sm:text-xs font-mono text-white/60">
-                          Domain
-                        </span>
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[11px] sm:text-xs font-mono text-white/60">
+                            Domain
+                          </span>
+                          {domain.highlighted && (
+                            <span className="text-[9px] font-mono uppercase font-bold text-[#00ff9d] bg-[#00ff9d]/20 px-1.5 py-0.5 rounded border border-[#00ff9d]/40 whitespace-nowrap">
+                              PERFECT
+                            </span>
+                          )}
+                        </div>
                         <span
-                          className={`text-xl sm:text-2xl font-black font-mono ${
+                          className={`text-xl sm:text-2xl font-black font-mono leading-none tracking-tight flex-shrink-0 ${
                             domain.highlighted ? 'text-[#00ff9d]' : 'text-white'
                           }`}
                         >
@@ -152,7 +151,7 @@ export const FeaturedAchievementSection: React.FC = () => {
                       </div>
 
                       <h4
-                        className={`text-sm sm:text-base font-semibold leading-snug mb-3 ${
+                        className={`text-sm sm:text-base font-semibold leading-snug mb-3 min-h-[2.5rem] flex items-center ${
                           domain.highlighted ? 'text-[#00ff9d]' : 'text-white'
                         }`}
                       >

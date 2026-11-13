@@ -41,7 +41,7 @@ export function App() {
       {/* 4. SKILLS SECTION (White Contrast) */}
       <SkillsSection />
 
-      {/* 5. PROJECTS SECTION (Sticky-Stacking Cards with eJPT PTES Report) */}
+      {/* 5. PROJECTS SECTION (Sticky-Stacking Cards) */}
       <ProjectsSection />
 
       {/* 6. DEDICATED CERTIFICATIONS SECTION */}

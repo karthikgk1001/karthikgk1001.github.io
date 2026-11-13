@@ -33,7 +33,7 @@ export const FooterSection: React.FC = () => {
       }
       reply = '📄 Opening G. Karthik\'s Resume (PDF) in a new tab... [karthikgportfolio.vercel.app/resume.pdf]';
     } else if (cleanCmd === 'projects') {
-      reply = '1. eJPT Practical Penetration Testing Assessment (PTES Report)\n2. EMBER 2.0 – CUDA Malware Detection (PyTorch/CUDA C++)\n3. WSL-Based EDR Evasion Detection (SigmaHQ)\n4. DevOps SIEM Monitoring Platform (FastAPI/React)\n5. Magic Number Analyzer (Static Malware Tool)';
+      reply = '1. EMBER 2.0 – CUDA-Accelerated Malware Detection System (PyTorch/CUDA C++)\n2. WSL-Based EDR Evasion Detection (SigmaHQ)\n3. DevOps SIEM Monitoring Platform (FastAPI/React)\n4. Magic Number Analyzer (Static Malware Tool)';
     } else if (cleanCmd === 'nmap') {
       reply = 'Starting Nmap 7.94 scan on karthik.local...\nHost is up (0.0012s latency).\nPORT 22/tcp   OPEN  ssh\nPORT 80/tcp   OPEN  http (Portfolio HUD)\nPORT 443/tcp  OPEN  https\nPORT 8000/tcp OPEN  fastapi-siem\nPORT 9200/tcp OPEN  opensearch\nService Info: OS: Kali Linux 6.1';
     } else if (cleanCmd === 'flag' || cleanCmd === 'cat flag.txt') {
